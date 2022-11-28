@@ -9,11 +9,7 @@ const port = process.env.PORT || 8000;
 
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {useNewUrlParser:true});
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("Connected to db");
-})
+mongoose.connect(uri);
 
 app.use(cors());
 app.use(express.json());
@@ -24,3 +20,6 @@ app.use('/User', UserRouter)
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
+
+//export server for testing
+module.exports = app;
